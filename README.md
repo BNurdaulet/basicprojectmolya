@@ -15,39 +15,24 @@
 ## Іске қосу
 
 ```bash
-git clone <репозиторий-сілтемесі>
-cd <папка-аты>
-python -m venv .venv
-# Linux/macOS: source .venv/bin/activate
-# Windows:     .venv\Scripts\activate
-pip install -r requirements.txt
+git clone https://github.com/BNurdaulet/basicprojectmolya.git
+cd basicprojectmolya
+cp .env.example .env   # ішіне GEMINI_API_KEY және GROQ_API_KEY жазыңыз
+./run.sh               # Windows: run.bat
 ```
 
-API кілттерін орнатыңыз.
+`run.sh` виртуалды ортаны жасап, тәуелділіктерді орнатады және серверді қосады.
+Браузерде `http://localhost:8000` ашыңыз.
 
-Linux/macOS:
-```bash
-export GEMINI_API_KEY="..."
-export GROQ_API_KEY="..."
-```
-
-Windows PowerShell:
-```powershell
-$env:GEMINI_API_KEY="..."
-$env:GROQ_API_KEY="..."
-```
-
-Серверді іске қосыңыз:
-```bash
-python -m uvicorn main:app --reload
-```
-Содан кейін браузерде `http://localhost:8000` ашыңыз.
+## Render-ге шығару
+Render → **New → Blueprint** → осы репозиторийді таңдаңыз (`render.yaml` бар).
+`GEMINI_API_KEY` пен `GROQ_API_KEY` мәндерін енгізіңіз.
 
 ## Қосымша айнымалылар
 | Айнымалы | Әдепкі мәні |
 |---|---|
-| `GEMINI_MODEL` | `gemini-2.5-flash` |
-| `GROQ_MODEL` | `llama-3.3-70b-versatile` |
+| `GEMINI_MODEL` | `gemini-3.6-flash` |
+| `GROQ_MODEL` | `openai/gpt-oss-120b` |
 
 ## API
 - `GET /api/questions` — 32 сұрақ және жауап шкаласы

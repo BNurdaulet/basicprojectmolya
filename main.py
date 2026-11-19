@@ -1,16 +1,9 @@
 """
 4 түрлі интеллект: IQ, EQ, SQ, PQ — білім беру веб-қосымшасы (FastAPI backend).
 
-Орнату:
-    pip install fastapi uvicorn pydantic google-generativeai groq
-
-Іске қосу (Linux/macOS):
-    export GEMINI_API_KEY="..."
-    export GROQ_API_KEY="..."
-    uvicorn main:app --reload
-
-Windows (PowerShell):
-    $env:GEMINI_API_KEY="..."; $env:GROQ_API_KEY="..."; uvicorn main:app --reload
+Іске қосу:
+    1) .env.example файлын .env деп көшіріп, API кілттерін жазыңыз
+    2) macOS/Linux: ./run.sh     Windows: run.bat
 
 Қосымша (міндетті емес) айнымалылар:
     GEMINI_MODEL (әдепкі: gemini-2.5-flash)
@@ -27,6 +20,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
+from dotenv import load_dotenv
 
 import google.generativeai as genai
 from groq import Groq
@@ -35,6 +29,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("intelligence-app")
 
 BASE_DIR = Path(__file__).resolve().parent
+load_dotenv(BASE_DIR / ".env")
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")
@@ -290,4 +285,4 @@ async def index():
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=int(os.environ.get("PORT", 8000)), reload=True)
