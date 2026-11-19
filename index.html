@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Төрт интеллект: IQ · EQ · SQ · PQ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Serif:wght@600;700;800&display=swap&subset=cyrillic,cyrillic-ext" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans"', 'system-ui', 'sans-serif'],
+            display: ['"Noto Serif"', 'Georgia', 'serif']
+          },
+          colors: { ink: '#12233F', paper: '#F6F8FB' }
+        }
+      }
+    };
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #F6F8FB; color: #12233F; }
+    .opt-btn:focus-visible, button:focus-visible, a:focus-visible { outline: 3px solid #12233F; outline-offset: 2px; }
+    .reveal { animation: reveal .35s ease-out both; }
+    @keyframes reveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { animation: none; }
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+    .rec h2 { font-family: "Noto Serif", Georgia, serif; font-weight: 700; font-size: 1.35rem; margin: 1.75rem 0 .6rem; color: #12233F; }
+    .rec h2:first-child { margin-top: 0; }
+    .rec h3 { font-weight: 700; font-size: 1.05rem; margin: 1.2rem 0 .4rem; }
+    .rec p { line-height: 1.8; margin: .6rem 0; max-width: 70ch; }
+    .rec ul, .rec ol { margin: .5rem 0 .8rem 1.25rem; max-width: 70ch; }
+    .rec ul { list-style: disc; }
+    .rec ol { list-style: decimal; }
+    .rec li { line-height: 1.75; margin: .35rem 0; padding-left: .2rem; }
+    .rec strong { font-weight: 700; }
+  </style>
+</head>
+<body class="font-sans antialiased min-h-screen">
+
+  <header class="border-b border-slate-200 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <button id="brand" class="font-display font-bold text-xl tracking-tight" type="button">IQ · EQ · SQ · PQ</button>
+      <p class="hidden sm:block text-sm text-slate-500">Өзіңді танып, толыққанды дамы</p>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+
+    <!-- 1-бөлім: Басты бет / Теория -->
+    <section id="view-home" aria-labelledby="home-title">
+      <div class="grid lg:grid-cols-5 gap-8 items-center">
+        <div class="lg:col-span-3">
+          <h1 id="home-title" class="font-display font-extrabold text-4xl sm:text-5xl leading-tight">
+            Адам тек ақылымен ғана емес, төрт қыры арқылы күшті
+          </h1>
+          <p class="mt-5 text-lg text-slate-600 leading-relaxed max-w-xl">
+            Ақыл-ой, сезім, рух және дене — төртеуі тең дамығанда ғана адам өз мүмкіндігін толық ашады.
+            32 сұраққа жауап беріп, өз профиліңізді көріңіз және жасанды интеллекттен жеке даму жоспарын алыңыз.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center gap-4">
+            <button id="start-btn" type="button" class="bg-ink text-white font-semibold px-8 py-4 rounded-xl text-lg hover:bg-slate-800 transition-colors">
+              Тестті бастау
+            </button>
+            <p class="text-sm text-slate-500">Шамамен 5 минут · 32 сұрақ</p>
+          </div>
+        </div>
+        <div class="lg:col-span-2 flex justify-center">
+          <svg viewBox="0 0 220 220" class="w-56 h-56 sm:w-72 sm:h-72" role="img" aria-label="Төрт интеллект түрінің схемасы">
+            <path d="M110 110 L110 10 A100 100 0 0 1 210 110 Z" fill="#2563EB"/>
+            <path d="M110 110 L210 110 A100 100 0 0 1 110 210 Z" fill="#E11D48"/>
+            <path d="M110 110 L110 210 A100 100 0 0 1 10 110 Z" fill="#7C3AED"/>
+            <path d="M110 110 L10 110 A100 100 0 0 1 110 10 Z" fill="#059669"/>
+            <circle cx="110" cy="110" r="34" fill="#F6F8FB"/>
+            <g font-family="Noto Serif, Georgia, serif" font-weight="700" font-size="20" fill="#fff" text-anchor="middle">
+              <text x="152" y="62">IQ</text>
+              <text x="158" y="166">EQ</text>
+              <text x="64" y="166">SQ</text>
+              <text x="62" y="62">PQ</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="mt-14 grid sm:grid-cols-2 gap-5">
+        <article class="bg-white rounded-2xl p-6 border-l-8 border-blue-600 shadow-sm">
+          <h2 class="font-display font-bold text-2xl text-blue-700">IQ — Интеллектуалдық қабілет</h2>
+          <p class="mt-3 text-slate-700 leading-relaxed">
+            Логикалық ойлау, талдау, есте сақтау және жаңа ақпаратты меңгеру қабілеті. IQ мәселелерді шешуге,
+            оқуға және дұрыс шешім қабылдауға көмектеседі.
+          </p>
+          <p class="mt-3 text-sm text-slate-500">Қалай дамытамыз: кітап оқу, жұмбақ шешу, жаңа дағды үйрену, шахмат ойнау.</p>
+        </article>
+        <article class="bg-white rounded-2xl p-6 border-l-8 border-rose-600 shadow-sm">
+          <h2 class="font-display font-bold text-2xl text-rose-700">EQ — Эмоционалдық интеллект</h2>
+          <p class="mt-3 text-slate-700 leading-relaxed">
+            Өз сезімдерін және өзгелердің сезімін түсініп, оларды басқару қабілеті. EQ қарым-қатынасты,
+            көшбасшылықты және стресспен күресуді жақсартады.
+          </p>
+          <p class="mt-3 text-sm text-slate-500">Қалай дамытамыз: күнделік жүргізу, белсенді тыңдау, жанашырлық жаттығулары.</p>
+        </article>
+        <article class="bg-white rounded-2xl p-6 border-l-8 border-violet-600 shadow-sm">
+          <h2 class="font-display font-bold text-2xl text-violet-700">SQ — Рухани интеллект</h2>
+          <p class="mt-3 text-slate-700 leading-relaxed">
+            Өмірдің мәнін іздеу, құндылықтарға адалдық және ішкі үйлесім. SQ адамға қиын сәттерде тірек болып,
+            жасаған ісіне мағына береді.
+          </p>
+          <p class="mt-3 text-sm text-slate-500">Қалай дамытамыз: ой елегінен өткізу, медитация, қайырымдылық, табиғатта серуендеу.</p>
+        </article>
+        <article class="bg-white rounded-2xl p-6 border-l-8 border-emerald-600 shadow-sm">
+          <h2 class="font-display font-bold text-2xl text-emerald-700">PQ — Дене интеллектісі</h2>
+          <p class="mt-3 text-slate-700 leading-relaxed">
+            Денсаулықты, энергияны және дене қуатын басқара білу. PQ — ұйқы, тамақтану, қозғалыс және демалыс
+            арқылы қалған үш интеллектінің негізін қалайды.
+          </p>
+          <p class="mt-3 text-sm text-slate-500">Қалай дамытамыз: тұрақты жаттығу, сапалы ұйқы, теңгерімді тамақтану, су ішу.</p>
+        </article>
+      </div>
+
+      <div class="mt-10 text-center">
+        <button id="start-btn-2" type="button" class="bg-ink text-white font-semibold px-8 py-4 rounded-xl text-lg hover:bg-slate-800 transition-colors">
+          Тестті бастау
+        </button>
+      </div>
+    </section>
+
+    <!-- 2-бөлім: Тест -->
+    <section id="view-test" class="hidden max-w-3xl mx-auto" aria-label="Тест">
+      <div class="flex items-center justify-between text-sm font-semibold mb-2">
+        <span id="progress-label">Сұрақ 1 / 32</span>
+        <span id="category-chip" class="px-3 py-1 rounded-full text-white text-xs"></span>
+      </div>
+      <div class="w-full h-3 bg-slate-200 rounded-full overflow-hidden" role="progressbar" aria-valuemin="0" aria-valuemax="32" aria-valuenow="1" id="progress-track">
+        <div id="progress-bar" class="h-full bg-ink rounded-full transition-all duration-300" style="width:0%"></div>
+      </div>
+
+      <div id="question-card" class="mt-8 bg-white rounded-2xl shadow-sm p-6 sm:p-10 reveal">
+        <h2 id="question-text" class="font-display font-bold text-2xl sm:text-3xl leading-snug"></h2>
+        <div id="options" class="mt-8 grid gap-3" role="radiogroup" aria-labelledby="question-text"></div>
+      </div>
+
+      <div class="mt-6 flex items-center justify-between">
+        <button id="back-btn" type="button" class="px-5 py-3 rounded-lg border border-slate-300 bg-white font-medium hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed">
+          Артқа
+        </button>
+        <button id="next-btn" type="button" class="px-6 py-3 rounded-lg bg-ink text-white font-semibold hover:bg-slate-800 disabled:opacity-40 disabled:cursor-not-allowed">
+          Келесі
+        </button>
+      </div>
+    </section>
+
+    <!-- Жүктелу -->
+    <section id="view-loading" class="hidden max-w-xl mx-auto text-center py-20" aria-live="polite">
+      <div class="mx-auto w-14 h-14 rounded-full border-4 border-slate-200 border-t-ink animate-spin"></div>
+      <h2 class="mt-8 font-display font-bold text-2xl">Нәтижелеріңіз талданып жатыр</h2>
+      <p class="mt-3 text-slate-600">Жасанды интеллект сіздің жеке даму жоспарыңызды дайындап жатыр. Бұл бірнеше секундқа созылуы мүмкін.</p>
+    </section>
+
+    <!-- Қате -->
+    <section id="view-error" class="hidden max-w-xl mx-auto text-center py-20" role="alert">
+      <h2 class="font-display font-bold text-2xl text-rose-700">Қате орын алды</h2>
+      <p id="error-text" class="mt-3 text-slate-600"></p>
+      <div class="mt-6 flex justify-center gap-3">
+        <button id="retry-btn" type="button" class="px-6 py-3 rounded-lg bg-ink text-white font-semibold hover:bg-slate-800">Қайта жіберу</button>
+        <button id="error-home-btn" type="button" class="px-6 py-3 rounded-lg border border-slate-300 bg-white font-medium hover:bg-slate-100">Басты бетке</button>
+      </div>
+    </section>
+
+    <!-- 3 және 4-бөлімдер: Нәтиже және AI ұсыныстары -->
+    <section id="view-results" class="hidden" aria-labelledby="results-title">
+      <h1 id="results-title" class="font-display font-extrabold text-3xl sm:text-4xl">Сіздің интеллект профиліңіз</h1>
+      <p id="dominant-text" class="mt-3 text-lg text-slate-600"></p>
+
+      <div class="mt-8 grid lg:grid-cols-2 gap-6">
+        <div class="bg-white rounded-2xl shadow-sm p-4 sm:p-6">
+          <div class="relative w-full" style="height:380px">
+            <canvas id="radar-chart" role="img" aria-label="IQ, EQ, SQ, PQ көрсеткіштерінің радар диаграммасы"></canvas>
+          </div>
+        </div>
+        <div id="score-cards" class="grid gap-4 content-start"></div>
+      </div>
+
+      <div class="mt-8 bg-white rounded-2xl shadow-sm p-6 sm:p-10">
+        <div class="flex flex-wrap items-baseline justify-between gap-2 mb-6">
+          <h2 class="font-display font-bold text-2xl sm:text-3xl">Жеке даму ұсыныстары</h2>
+          <span id="provider-note" class="text-sm text-slate-500"></span>
+        </div>
+        <div id="recommendation" class="rec text-slate-800"></div>
+      </div>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <button id="restart-btn" type="button" class="px-6 py-3 rounded-lg bg-ink text-white font-semibold hover:bg-slate-800">Тестті қайта тапсыру</button>
+        <button id="print-btn" type="button" class="px-6 py-3 rounded-lg border border-slate-300 bg-white font-medium hover:bg-slate-100">Басып шығару</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 mt-12">
+    <p class="max-w-6xl mx-auto px-4 sm:px-6 py-6 text-sm text-slate-500">
+      Бұл тест білім беру мақсатында жасалған және клиникалық диагноз қоймайды.
+    </p>
+  </footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var META = {
+    IQ: { name: 'IQ', title: 'Интеллектуалдық қабілет', color: '#2563EB', soft: 'rgba(37,99,235,0.18)', text: 'text-blue-700', border: 'border-blue-600' },
+    EQ: { name: 'EQ', title: 'Эмоционалдық интеллект', color: '#E11D48', soft: 'rgba(225,29,72,0.18)', text: 'text-rose-700', border: 'border-rose-600' },
+    SQ: { name: 'SQ', title: 'Рухани интеллект', color: '#7C3AED', soft: 'rgba(124,58,237,0.18)', text: 'text-violet-700', border: 'border-violet-600' },
+    PQ: { name: 'PQ', title: 'Дене интеллектісі', color: '#059669', soft: 'rgba(5,150,105,0.18)', text: 'text-emerald-700', border: 'border-emerald-600' }
+  };
+  var ORDER = ['IQ', 'EQ', 'SQ', 'PQ'];
+
+  var state = { questions: [], scale: [], answers: {}, index: 0, chart: null };
+
+  var views = ['home', 'test', 'loading', 'error', 'results'];
+  function $(id) { return document.getElementById(id); }
+
+  function showView(name) {
+    views.forEach(function (v) {
+      $('view-' + v).classList.toggle('hidden', v !== name);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function inlineFormat(escaped) {
+    return escaped
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/(^|[\s(])\*(?!\s)(.+?)\*(?=[\s).,;:!?]|$)/g, '$1<em>$2</em>');
+  }
+
+  // Қауіпсіз markdown рендері: алдымен барлық HTML экрандалады, содан кейін ғана өзіміздің тегтер қосылады.
+  function renderMarkdown(text) {
+    var lines = String(text).replace(/\r\n/g, '\n').split('\n');
+    var html = '';
+    var listType = null;
+    var paragraph = [];
+
+    function closeList() {
+      if (listType) { html += '</' + listType + '>'; listType = null; }
+    }
+    function flushParagraph() {
+      if (paragraph.length) {
+        html += '<p>' + inlineFormat(escapeHtml(paragraph.join(' '))) + '</p>';
+        paragraph = [];
+      }
+    }
+
+    lines.forEach(function (raw) {
+      var line = raw.trim();
+      var m;
+      if (!line) { flushParagraph(); closeList(); return; }
+
+      if ((m = line.match(/^(#{1,4})\s+(.*)$/))) {
+        flushParagraph(); closeList();
+        var tag = m[1].length <= 2 ? 'h2' : 'h3';
+        html += '<' + tag + '>' + inlineFormat(escapeHtml(m[2].replace(/\*\*/g, ''))) + '</' + tag + '>';
+        return;
+      }
+      if ((m = line.match(/^[-*•]\s+(.*)$/))) {
+        flushParagraph();
+        if (listType !== 'ul') { closeList(); html += '<ul>'; listType = 'ul'; }
+        html += '<li>' + inlineFormat(escapeHtml(m[1])) + '</li>';
+        return;
+      }
+      if ((m = line.match(/^\d+[.)]\s+(.*)$/))) {
+        flushParagraph();
+        if (listType !== 'ol') { closeList(); html += '<ol>'; listType = 'ol'; }
+        html += '<li>' + inlineFormat(escapeHtml(m[1])) + '</li>';
+        return;
+      }
+      closeList();
+      paragraph.push(line);
+    });
+
+    flushParagraph(); closeList();
+    return html;
+  }
+
+  // ---------- Сұрақтарды жүктеу ----------
+  function loadQuestions() {
+    return fetch('/api/questions')
+      .then(function (r) {
+        if (!r.ok) throw new Error('Сұрақтарды жүктеу мүмкін болмады (код: ' + r.status + ').');
+        return r.json();
+      })
+      .then(function (data) {
+        state.questions = data.questions;
+        state.scale = data.scale;
+      });
+  }
+
+  function startTest() {
+    var go = function () {
+      state.answers = {};
+      state.index = 0;
+      showView('test');
+      renderQuestion();
+    };
+    if (state.questions.length === 32) { go(); return; }
+    loadQuestions().then(go).catch(function (err) {
+      showError(err.message || 'Сұрақтарды жүктеу кезінде қате шықты.', null);
+    });
+  }
+
+  function renderQuestion() {
+    var q = state.questions[state.index];
+    var total = state.questions.length;
+    var meta = META[q.category];
+
+    $('progress-label').textContent = 'Сұрақ ' + (state.index + 1) + ' / ' + total;
+    $('progress-bar').style.width = (state.index / total * 100) + '%';
+    $('progress-track').setAttribute('aria-valuenow', String(state.index + 1));
+
+    var chip = $('category-chip');
+    chip.textContent = meta.name + ' · ' + meta.title;
+    chip.style.backgroundColor = meta.color;
+
+    $('question-text').textContent = q.text;
+
+    var card = $('question-card');
+    card.classList.remove('reveal');
+    void card.offsetWidth;
+    card.classList.add('reveal');
+
+    var box = $('options');
+    box.innerHTML = '';
+    state.scale.forEach(function (s) {
+      var selected = state.answers[q.id] === s.value;
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.setAttribute('role', 'radio');
+      btn.setAttribute('aria-checked', selected ? 'true' : 'false');
+      btn.className = 'opt-btn w-full text-left flex items-center gap-4 px-5 py-4 rounded-xl border-2 font-medium transition-colors ' +
+        (selected ? 'text-white' : 'bg-white border-slate-200 hover:border-slate-400');
+      if (selected) {
+        btn.style.backgroundColor = meta.color;
+        btn.style.borderColor = meta.color;
+      }
+      var num = document.createElement('span');
+      num.className = 'shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ' +
+        (selected ? 'bg-white' : 'bg-slate-100');
+      num.style.color = selected ? meta.color : '#12233F';
+      num.textContent = s.value;
+      var label = document.createElement('span');
+      label.textContent = s.label;
+      btn.appendChild(num);
+      btn.appendChild(label);
+      btn.addEventListener('click', function () { selectAnswer(q.id, s.value); });
+      box.appendChild(btn);
+    });
+
+    $('back-btn').disabled = state.index === 0;
+    $('next-btn').disabled = state.answers[q.id] === undefined;
+    $('next-btn').textContent = state.index === total - 1 ? 'Нәтижені көру' : 'Келесі';
+  }
+
+  var autoTimer = null;
+  function selectAnswer(id, value) {
+    state.answers[id] = value;
+    renderQuestion();
+    clearTimeout(autoTimer);
+    autoTimer = setTimeout(function () { goNext(); }, 320);
+  }
+
+  function goNext() {
+    var q = state.questions[state.index];
+    if (state.answers[q.id] === undefined) return;
+    if (state.index < state.questions.length - 1) {
+      state.index += 1;
+      renderQuestion();
+    } else {
+      submitAnswers();
+    }
+  }
+
+  function goBack() {
+    clearTimeout(autoTimer);
+    if (state.index > 0) {
+      state.index -= 1;
+      renderQuestion();
+    }
+  }
+
+  // ---------- Нәтижелерді жіберу ----------
+  function submitAnswers() {
+    clearTimeout(autoTimer);
+    $('progress-bar').style.width = '100%';
+    showView('loading');
+
+    var payload = {
+      answers: state.questions.map(function (q) {
+        return { id: q.id, value: state.answers[q.id] };
+      })
+    };
+
+    fetch('/api/calculate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (data) {
+          if (!r.ok) {
+            var msg = typeof data.detail === 'string' ? data.detail : 'Сервер қатесі (код: ' + r.status + ').';
+            throw new Error(msg);
+          }
+          return data;
+        });
+      })
+      .then(renderResults)
+      .catch(function (err) {
+        showError(err.message || 'Нәтижені есептеу кезінде қате шықты.', submitAnswers);
+      });
+  }
+
+  var retryHandler = null;
+  function showError(message, retry) {
+    $('error-text').textContent = message;
+    retryHandler = retry;
+    $('retry-btn').classList.toggle('hidden', !retry);
+    showView('error');
+  }
+
+  // ---------- Нәтижелерді көрсету ----------
+  function renderResults(data) {
+    var scores = data.scores;
+    var dominant = data.dominant;
+    var dm = META[dominant];
+
+    $('dominant-text').innerHTML = 'Басым интеллект түрі: <strong class="' + dm.text + '">' +
+      escapeHtml(dm.name + ' — ' + dm.title) + '</strong> (' + scores[dominant] + '%)';
+
+    var cards = $('score-cards');
+    cards.innerHTML = '';
+    ORDER.forEach(function (key) {
+      var m = META[key];
+      var isDom = key === dominant;
+      var card = document.createElement('div');
+      card.className = 'bg-white rounded-2xl shadow-sm p-5 border-l-8 ' + m.border + (isDom ? ' ring-2 ring-offset-2' : '');
+      if (isDom) card.style.setProperty('--tw-ring-color', m.color);
+
+      var head = document.createElement('div');
+      head.className = 'flex items-baseline justify-between gap-3';
+      var title = document.createElement('h3');
+      title.className = 'font-display font-bold text-lg ' + m.text;
+      title.textContent = m.name + ' — ' + m.title;
+      var val = document.createElement('span');
+      val.className = 'font-display font-extrabold text-3xl';
+      val.textContent = scores[key] + '%';
+      head.appendChild(title);
+      head.appendChild(val);
+
+      var track = document.createElement('div');
+      track.className = 'mt-3 h-3 bg-slate-100 rounded-full overflow-hidden';
+      var fill = document.createElement('div');
+      fill.className = 'h-full rounded-full';
+      fill.style.width = scores[key] + '%';
+      fill.style.backgroundColor = m.color;
+      track.appendChild(fill);
+
+      card.appendChild(head);
+      card.appendChild(track);
+      if (isDom) {
+        var badge = document.createElement('p');
+        badge.className = 'mt-3 text-sm font-semibold ' + m.text;
+        badge.textContent = 'Ең жоғары көрсеткіш — сіздің басым күшіңіз';
+        card.appendChild(badge);
+      }
+      cards.appendChild(card);
+    });
+
+    $('recommendation').innerHTML = renderMarkdown(data.recommendation || '');
+    var providerNames = { gemini: 'Gemini', groq: 'Groq (Llama)' };
+    $('provider-note').textContent = providerNames[data.provider]
+      ? 'Ұсыныстарды жасаған модель: ' + providerNames[data.provider]
+      : '';
+
+    showView('results');
+    drawChart(scores, dominant);
+  }
+
+  function drawChart(scores, dominant) {
+    var ctx = $('radar-chart').getContext('2d');
+    if (state.chart) { state.chart.destroy(); state.chart = null; }
+
+    var labels = ORDER.map(function (k) { return k + ' · ' + META[k].title; });
+    var values = ORDER.map(function (k) { return scores[k]; });
+    var pointColors = ORDER.map(function (k) { return META[k].color; });
+    var pointSizes = ORDER.map(function (k) { return k === dominant ? 10 : 6; });
+    var dm = META[dominant];
+
+    state.chart = new Chart(ctx, {
+      type: 'radar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Көрсеткіш (%)',
+          data: values,
+          backgroundColor: dm.soft,
+          borderColor: dm.color,
+          borderWidth: 3,
+          pointBackgroundColor: pointColors,
+          pointBorderColor: '#ffffff',
+          pointBorderWidth: 2,
+          pointRadius: pointSizes,
+          pointHoverRadius: 12
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          r: {
+            min: 0,
+            max: 100,
+            ticks: { stepSize: 25, backdropColor: 'transparent', callback: function (v) { return v + '%'; } },
+            pointLabels: { font: { size: 13, weight: '600' }, color: '#12233F' },
+            grid: { color: 'rgba(18,35,63,0.12)' },
+            angleLines: { color: 'rgba(18,35,63,0.12)' }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: { label: function (c) { return ' ' + c.parsed.r + '%'; } }
+          }
+        }
+      }
+    });
+  }
+
+  function resetToHome() {
+    clearTimeout(autoTimer);
+    state.answers = {};
+    state.index = 0;
+    showView('home');
+  }
+
+  // ---------- Оқиғалар ----------
+  $('start-btn').addEventListener('click', startTest);
+  $('start-btn-2').addEventListener('click', startTest);
+  $('back-btn').addEventListener('click', goBack);
+  $('next-btn').addEventListener('click', function () { clearTimeout(autoTimer); goNext(); });
+  $('restart-btn').addEventListener('click', startTest);
+  $('print-btn').addEventListener('click', function () { window.print(); });
+  $('brand').addEventListener('click', resetToHome);
+  $('error-home-btn').addEventListener('click', resetToHome);
+  $('retry-btn').addEventListener('click', function () { if (retryHandler) retryHandler(); });
+
+  loadQuestions().catch(function () { /* тест басталғанда қайта жүктеледі */ });
+})();
+</script>
+</body>
+</html>
